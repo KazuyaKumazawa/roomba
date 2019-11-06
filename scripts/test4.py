@@ -24,6 +24,7 @@ class GoAndStop():
                 vel.linear.x  = 0
                 print vel
                 self.cmd_vel.publish(vel)
+                break
 
 if __name__ == '__main__':
     rospy.init_node("GoAndStop")
