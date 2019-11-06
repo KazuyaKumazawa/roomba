@@ -15,6 +15,7 @@ def main():
         vel.linear.x  = 0.1
         print vel
         rightbumper = Bumper()
+        rightbumper = sub
         print rightbumper.is_right_pressed
         pub.publish(vel)
 
