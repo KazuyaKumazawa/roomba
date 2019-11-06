@@ -14,12 +14,12 @@ def main():
         vel  = Twist() #initialize
         vel.linear.x  = 0.1
         print vel
-        bumper = Bumper()
-        print bumper.is_right_pressed
+        rightbumper = Bumper()
+        print rightbumper.is_right_pressed
         pub.publish(vel)
 
 def callback(bumper):
-    print bumper.is_right_pressed
+    print rightbumper.is_right_pressed
     stop_vel = Twist()
     stop_vel.linear.x = 0
     rate = rospy.Rate(10.0)
