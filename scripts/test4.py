@@ -25,7 +25,7 @@ class GoAndStop():
                 print vel
                 self.cmd_vel.publish(vel)
 
-if __name__ == '__main__'=
+if __name__ == '__main__':
     rospy.init_node("GoAndStop")
     GoAndStop().run()
 
