@@ -14,6 +14,7 @@ def main():
         vel  = Twist() #initialize
         vel.linear.x  = 0.1
         print vel
+        print bumper
         pub.publish(vel)
 
 def callback(bumper):
