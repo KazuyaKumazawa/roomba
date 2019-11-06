@@ -8,7 +8,7 @@ rospy.init_node("GoAndStop") #Give the node a name
 
 pub = rospy.Publisher("cmd_vel", Twist, queue_size=10)
 
-def maim():
+def main():
     sub = rospy.Subscriber("bumper", Bumper, callback)
     while not rospy.is_shutdown():
         vel  = Twist() #initialize
