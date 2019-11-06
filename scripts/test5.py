@@ -19,10 +19,11 @@ class ChangeDirection():
         while not rospy.is_shutdown():
             if self.bumper.is_left_pressed == False and self.bumper.is_right_pressed == False:
                 vel.linear.x  = 0.1
+                vel.angular.z = 0
                 print vel
             else:
                 vel.linear.x  = 0
-                vel.angular.z = 1
+                vel.angular.z = 0.5
                 print vel
             self.cmd_vel.publish(vel)
             rate.sleep()
