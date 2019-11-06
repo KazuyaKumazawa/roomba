@@ -9,16 +9,18 @@ rospy.init_node("GoAndStop") #Give the node a name
 pub = rospy.Publisher("cmd_vel", Twist, queue_size=10)
 
 def main():
-    sub = rospy.Subscriber("bumper", Bumper, callback)
+    #sub = rospy.Subscriber("bumper", Bumper, callback)
+    sub = rospy.Subscriber("bumper", Bumper)
     while not rospy.is_shutdown():
         vel  = Twist() #initialize
         vel.linear.x  = 0.1
         print vel
         rightbumper = Bumper()
         rightbumper = sub
-        print rightbumper.is_right_pressed
+        print rightbumper
         pub.publish(vel)
 
+'''
 def callback(bumper):
     print rightbumper.is_right_pressed
     stop_vel = Twist()
@@ -27,6 +29,7 @@ def callback(bumper):
     for i in range(5):
         pub.publish(stop_vel)
         rate.sleep()
+'''
 
 if __name__ == "__main__":
     main()
