@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+'''
 1st layer
 Keep forward
 Rotate with positive acceleration when the right bumper is activated
@@ -11,7 +12,8 @@ light_signal_center_left and light_signal_center_right,
 and light_signal_front_right and light_signal_right, 
 change the direction to avoid obstacles
 Velocity, angular velocity are constant
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'''
+
 import rospy
 from geometry_msgs.msg import Twist
 from ca_msgs.msg import Bumper
