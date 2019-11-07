@@ -64,8 +64,14 @@ class LCS():
                         vel.linear.x  = 0.1
                         vel.angular.z = 1
                         print vel
-                elif  
-            
+                elif (light_l + light_fl > light_cl + light_cr) and (light_r + light_fr < light_l + light_fl): #obstacle is in left
+                    vel.linear.x  = 0.1
+                    vel.angular.z = -1
+                    print vel
+                elif (light_l + light_fl > light_cl + light_cr) and (light_r + light_fr < light_l + light_fl): #obstacle is in right
+                    vel.linear.x  = 0.1
+                    vel.angular.z = 1
+                    print vel
             self.cmd_vel.publish(vel)
             rate.sleep()
                 
