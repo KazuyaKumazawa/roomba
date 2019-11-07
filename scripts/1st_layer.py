@@ -29,6 +29,7 @@ class LCS():
                 vel.angular.z = 0
                 print vel
                 self.cmd_vel.publish(vel)
+                rate.sleep()
             elif (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
                 for i in range(31):
                     vel.linear.x  = 0
