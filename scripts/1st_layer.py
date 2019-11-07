@@ -24,7 +24,7 @@ class LCS():
         rate = rospy.Rate(10)
         vel  = Twist() #initialize
         while not rospy.is_shutdown():
-            if self.bumper.is_left_pressed == False and self.bumper.is_right_pressed == False:
+            if (self.bumper.is_left_pressed == False) and (self.bumper.is_right_pressed == False):
                 vel.linear.x  = 0.1
                 vel.angular.z = 0
                 print vel
@@ -41,7 +41,7 @@ class LCS():
                     vel.angular.z = -0.5
                     print vel
                     self.cmd_vel.publish(vel)
-             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == True):
+            elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == True):
                 for i in range(62): #6.2sec*0.5rad/sec~Pi
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
