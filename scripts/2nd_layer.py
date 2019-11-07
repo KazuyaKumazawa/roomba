@@ -32,7 +32,7 @@ class LCS():
         vel  = Twist()
         while not rospy.is_shutdown():
             #1st layer
-            if self.bumper.is_left_pressed == False and self.bumper.is_right_pressed == False:
+            if (self.bumper.is_left_pressed == False) and (self.bumper.is_right_pressed == False):
                 vel.linear.x  = 0.1
                 vel.angular.z = 0
                 print vel
@@ -44,7 +44,7 @@ class LCS():
                 vel.linear.x  = 0
                 vel.angular.z = -0.5
                 print vel
-            elif self.bumper.is_left_pressed == True and self.bumper.is_right_pressed == True:
+            elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == True):
                 for i in range(62): #6.2sec*0.5rad/sec~Pi
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
@@ -56,7 +56,8 @@ class LCS():
             light_cr = self.bumper.light_signal_center_right
             light_fr = self.bumper.light_signal_front_right
             light_r = self.bumper.light_signal_right
-            if light_l>50 or light_fl>50 or light_cl or light_cr>50 or light_fr>50 or light_r>50: #detect obstacle
+            THRESHOLD = 100
+            if light_l>THRESHOLD or light_fl>THRESHOLD or light_cl or light_cr>THRESHOLD or light_fr>THRESHOLD or light_r>THRESHOLD: #detect obstacle
                 if (light_l + light_fl < light_cl + light_cr) and (light_r + light_fr < light_cl + light_cr): #obstacle is in front
                     if light_l + light_fl > light_r + light_fr: #direction of right is more safety
                         vel.linear.x  = 0.1
