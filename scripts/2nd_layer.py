@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 1st layer
-keep forward
-rotate with positive acceleration when the right bumper is activated
-rotate with negative acceleration when the left bumper is activated
-change direction to the opposite when the right and left bumper is activated
+Keep forward
+Rotate with positive acceleration when the right bumper is activated
+Rotate with negative acceleration when the left bumper is activated
+Change direction to the opposite when the right and left bumper is activated
 2nd layer
-
+Based on the sum of light_signal_left and light_signal_front_left, 
+light_signal_center_left and light_signal_center_right, 
+and light_signal_front_right and light_signal_right, 
+change the direction to avoid obstacles
+Velocity, angular velocity are constant
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 import rospy
 from geometry_msgs.msg import Twist
@@ -25,6 +29,7 @@ class LCS():
         rate = rospy.Rate(10)
         vel  = Twist()
         while not rospy.is_shutdown():
+            #1st layer
             if self.bumper.is_left_pressed == False and self.bumper.is_right_pressed == False:
                 vel.linear.x  = 0.1
                 vel.angular.z = 0
@@ -42,6 +47,25 @@ class LCS():
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
                     self.cmd_vel.publish(vel)
+            #2nd layer
+            light_l = self.bumper.light_signal_left
+            light_fl = self.bumper.light_signal_front_left
+            light_cl = self.bumper.light_signal_center_left
+            light_cr = self.bumper.light_signal_center_right
+            light_fr = self.bumper.light_signal_front_right
+            light_r = self.bumper.light_signal_right
+            if light_l>50 or light_fl>50 or light_cl or light_cr>50 or light_fr>50 or light_r>50: #detect obstacle
+                if (light_l + light_fl < light_cl + light_cr) and (light_r + light_fr < light_cl + light_cr): #obstacle is in front
+                    if light_l + light_fl > light_r + light_fr: #direction of right is more safety
+                        vel.linear.x  = 0.1
+                        vel.angular.z = -1
+                        print vel
+                    else: #direction of left is more safety
+                        vel.linear.x  = 0.1
+                        vel.angular.z = 1
+                        print vel
+                elif  
+            
             self.cmd_vel.publish(vel)
             rate.sleep()
                 
