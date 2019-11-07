@@ -1,8 +1,10 @@
 #!/usr/bin/env python
-#1st layer
-#keep forward
-#rotate with positive acceleration when the right bumper is activated
-#rotate with negative acceleration when the left bumper is activated
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+1st layer
+keep forward
+rotate with positive acceleration when the right bumper is activated
+rotate with negative acceleration when the left bumper is activated
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 import rospy
 from geometry_msgs.msg import Twist
 from ca_msgs.msg import Bumper
