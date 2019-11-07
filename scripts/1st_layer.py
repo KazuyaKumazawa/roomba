@@ -28,15 +28,24 @@ class LCS():
                 vel.linear.x  = 0.1
                 vel.angular.z = 0
                 print vel
+                self.cmd_vel.publish(vel)
             elif self.bumper.is_right_pressed == True:
-                vel.linear.x  = 0
-                vel.angular.z = 0.5
-                print vel
+                for i in range(30):
+                    vel.linear.x  = 0
+                    vel.angular.z = 0.5
+                    print vel
+                    self.cmd_vel.publish(vel)
             elif self.bumper.is_left_pressed == True:
-                vel.linear.x  = 0
-                vel.angular.z = -0.5
-                print vel
-            self.cmd_vel.publish(vel)
+                for i in range(30):
+                    vel.linear.x  = 0
+                    vel.angular.z = -0.5
+                    print vel
+                    self.cmd_vel.publish(vel)
+             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == True):
+                for i in range(62): #6.2sec*0.5rad/sec~Pi
+                    vel.linear.x  = 0
+                    vel.angular.z = 0.5
+                    self.cmd_vel.publish(vel)
             rate.sleep()
                 
 
