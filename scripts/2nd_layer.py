@@ -92,6 +92,12 @@ class LCS():
                     print vel
                     self.cmd_vel.publish(vel)
                     rate.sleep()
+                else:
+                    vel.linear.x  = 0.05
+                    vel.angular.z = 0
+                    print vel
+                    self.cmd_vel.publish(vel)
+                    rate.sleep()
                 
 
 if __name__ == '__main__':
