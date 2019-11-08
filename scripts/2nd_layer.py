@@ -61,11 +61,11 @@ class LCS():
             #2nd layer
             light_l = self.bumper.light_signal_left
             light_fl = self.bumper.light_signal_front_left
-            light_cl = self.bumper.light_signal_center_left
-            light_cr = self.bumper.light_signal_center_right
+            light_cl = self.bumper.light_signal_center_left * 2 #weighted
+            light_cr = self.bumper.light_signal_center_right * 2 #weighted
             light_fr = self.bumper.light_signal_front_right
             light_r = self.bumper.light_signal_right
-            THRESHOLD = 200
+            THRESHOLD = 300
             if light_l>THRESHOLD or light_fl>THRESHOLD or light_cl or light_cr>THRESHOLD or light_fr>THRESHOLD or light_r>THRESHOLD: #detect obstacle
                 if (light_l + light_fl < light_cl + light_cr) and (light_r + light_fr < light_cl + light_cr): #obstacle is in front
                     if light_l + light_fl > light_r + light_fr: #direction of right is more safety
