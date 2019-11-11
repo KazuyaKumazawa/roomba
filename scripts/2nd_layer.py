@@ -1,7 +1,16 @@
 #!/usr/bin/env python
 
 '''
-Trial and error 2nd_layer.py
+1st layer
+Keep forward
+Rotate with positive acceleration when the right bumper is activated
+Rotate with negative acceleration when the left bumper is activated
+Change direction to the opposite when the right and left bumper is activated
+2nd layer
+Based on the sum of light_signal_left and light_signal_front_left, 
+light_signal_center_left and light_signal_center_right, 
+and light_signal_front_right and light_signal_right, 
+change the direction to avoid obstacles
 '''
 
 import rospy
