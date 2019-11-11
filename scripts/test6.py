@@ -53,7 +53,7 @@ class LCS():
                 ave_c = (light_cl + light_cr)/2
                 ave_r = (light_l + light_fl)/2
                 ave_l = (light_r + light_fr)/2
-                THRESHOLD = 100
+                THRESHOLD = 10
                 if ave_c>THRESHOLD or ave_r>THRESHOLD or ave_l>THRESHOLD: #detect obstacle
                     if (ave_l < ave_c) and (ave_r < ave_c): #obstacle is in front
                         if ave_l > ave_r: #direction of right is more safety
