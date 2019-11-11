@@ -23,14 +23,14 @@ class LCS():
         while not rospy.is_shutdown():
             #1st layer
             if (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
-                for i in range(31):
+                for i in range(16):
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
                     print vel
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == False):
-                for i in range(31):
+                for i in range(16):
                     vel.linear.x  = 0
                     vel.angular.z = -0.5
                     print vel
@@ -51,10 +51,12 @@ class LCS():
                 light_fr = self.bumper.light_signal_front_right
                 light_r = self.bumper.light_signal_right
                 ave_c = (light_cl + light_cr)/2
+                ave_r = (light_l + light_fl)/2
+                ave_l = (light_r + light_fr)/2
                 THRESHOLD = 1000
-                if light_fl>THRESHOLD or light_cl or light_cr>THRESHOLD or light_fr>THRESHOLD: #detect obstacle
-                    if (light_fl < ave_c) and (light_fr < ave_c): #obstacle is in front
-                        if light_fl > light_fr: #direction of right is more safety
+                if ave_c>THRESHOLD or ave_r>THRESHOLD or ave_l>THRESHOLD: #detect obstacle
+                    if (ave_l < ave_c) and (ave_r < ave_c): #obstacle is in front
+                        if ave_l > ave_r: #direction of right is more safety
                             vel.linear.x  = 0.05
                             vel.angular.z = -1
                             print vel
@@ -66,13 +68,13 @@ class LCS():
                             print vel
                             self.cmd_vel.publish(vel)
                             rate.sleep()
-                    elif (light_fl > ave_c) and (light_fr < light_fl): #obstacle is in left
+                    elif (ave_l > ave_c) and (ave_r < ave_l): #obstacle is in left
                         vel.linear.x  = 0.05
                         vel.angular.z = -0.5
                         print vel
                         self.cmd_vel.publish(vel)
                         rate.sleep()
-                    elif (light_fr > ave_c) and (light_fr > light_fl): #obstacle is in right
+                    elif (ave_r > ave_c) and (ave_r > ave_l): #obstacle is in right
                         vel.linear.x  = 0.05
                         vel.angular.z = 0.5
                         print vel
