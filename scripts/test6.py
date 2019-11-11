@@ -50,10 +50,11 @@ class LCS():
                 light_cr = self.bumper.light_signal_center_right
                 light_fr = self.bumper.light_signal_front_right
                 light_r = self.bumper.light_signal_right
+                light_c = (light_cl + light_cr)/2
                 THRESHOLD = 10
-                if light_l>THRESHOLD or light_fl>THRESHOLD or light_cl or light_cr>THRESHOLD or light_fr>THRESHOLD or light_r>THRESHOLD: #detect obstacle
-                    if (light_l + light_fl < light_cl) and (light_r + light_fr < light_cr): #obstacle is in front
-                        if light_l + light_fl > light_r + light_fr: #direction of right is more safety
+                if light_fl>THRESHOLD or light_cl or light_cr>THRESHOLD or light_fr>THRESHOLD: #detect obstacle
+                    if (light_fl < light_c) and (light_fr < light_c): #obstacle is in front
+                        if light_fl > light_fr: #direction of right is more safety
                             vel.linear.x  = 0.05
                             vel.angular.z = -1
                             print vel
@@ -65,21 +66,15 @@ class LCS():
                             print vel
                             self.cmd_vel.publish(vel)
                             rate.sleep()
-                    elif (light_l + light_fl > light_cl + light_cr) and (light_r + light_fr < light_l + light_fl): #obstacle is in left
+                    elif (light_fl > light_c) and (light_fr < light_fl): #obstacle is in left
                         vel.linear.x  = 0.05
-                        vel.angular.z = -1
+                        vel.angular.z = -0.5
                         print vel
                         self.cmd_vel.publish(vel)
                         rate.sleep()
-                    elif (light_r + light_fr > light_cl + light_cr) and (light_r + light_fr > light_l + light_fl): #obstacle is in right
+                    elif (light_fr > light_c) and (light_fr > light_fl): #obstacle is in right
                         vel.linear.x  = 0.05
-                        vel.angular.z = 1
-                        print vel
-                        self.cmd_vel.publish(vel)
-                        rate.sleep()
-                    else:
-                        vel.linear.x  = 0.05
-                        vel.angular.z = 0
+                        vel.angular.z = 0.5
                         print vel
                         self.cmd_vel.publish(vel)
                         rate.sleep()
