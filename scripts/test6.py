@@ -83,7 +83,7 @@ class LCS():
                         print vel
                         self.cmd_vel.publish(vel)
                         rate.sleep()
-                 else:
+                else:
                     vel.linear.x  = 0.1
                     vel.angular.z = 0
                     print vel
