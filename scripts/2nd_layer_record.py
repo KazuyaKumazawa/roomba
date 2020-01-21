@@ -29,8 +29,6 @@ class LCS():
     def run(self):
         rate = rospy.Rate(10)
         vel  = Twist()
-        with open('vel.xls', 'a') as v:
-        with open('bumper.xls', 'a') as b:
         while not rospy.is_shutdown():
             #1st layer
             if (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
@@ -38,8 +36,10 @@ class LCS():
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
                     print vel
-                    v.writeline(vel)
-                    b.writeline(vel)
+                    with open('vel.xls', 'a') as v:
+                        v.writeline(vel)
+                    with open('bumper.xls', 'a') as b:
+                        b.writeline(vel)
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == False):
@@ -47,8 +47,10 @@ class LCS():
                     vel.linear.x  = 0
                     vel.angular.z = -0.5
                     print vel
-                    v.writeline(vel)
-                    b.writeline(vel)
+                    with open('vel.xls', 'a') as v:
+                        v.writeline(vel)
+                    with open('bumper.xls', 'a') as b:
+                        b.writeline(vel)
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == True):
@@ -56,8 +58,10 @@ class LCS():
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
                     print vel
-                    v.writeline(vel)
-                    b.writeline(vel)
+                    with open('vel.xls', 'a') as v:
+                        v.writeline(vel)
+                    with open('bumper.xls', 'a') as b:
+                        b.writeline(vel)
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             else:
