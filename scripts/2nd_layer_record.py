@@ -47,7 +47,7 @@ class LCS():
 #               bl.writeline(self.bumper.is_left_pressed)
 #           with open('bumper.csv', 'a') as b:
 #               b.writeline(self.bumper.is_right_pressed, self.bumper.is_right_pressed)
-            with open('vel.csv', 'a') as v:
+            with open('velocity.csv', 'a') as v:
                 writer = csv.writer(v)
                 writer.writerow(vel)
             #1st layer
