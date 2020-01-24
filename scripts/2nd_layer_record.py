@@ -49,7 +49,7 @@ class LCS():
 #               b.writeline(self.bumper.is_right_pressed, self.bumper.is_right_pressed)
             with open('velocity.csv', 'a') as v:
                 writer = csv.writer(v)
-                writer.writerow(vel[1])
+                writer.writerow(vel.linear.x)
             #1st layer
             if (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
                 for i in range(16):
