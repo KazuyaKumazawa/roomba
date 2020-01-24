@@ -30,16 +30,22 @@ class LCS():
     def run(self):
         rate = rospy.Rate(10)
         vel  = Twist()
+        light_l = self.bumper.light_signal_left
+        light_fl = self.bumper.light_signal_front_left
+        light_cl = self.bumper.light_signal_center_left
+        light_cr = self.bumper.light_signal_center_right
+        light_fr = self.bumper.light_signal_front_right
+        light_r = self.bumper.light_signal_right
         while not rospy.is_shutdown():
-            with open('record.csv', 'a') as r:
-                writer = csv.writer(r)
-                writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
             #1st layer
             if (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
                 for i in range(16):
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
                     print vel
+                    with open('record.csv', 'a') as r:
+                        writer = csv.writer(r)
+                        writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == False):
@@ -47,6 +53,9 @@ class LCS():
                     vel.linear.x  = 0
                     vel.angular.z = -0.5
                     print vel
+                    with open('record.csv', 'a') as r:
+                        writer = csv.writer(r)
+                        writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == True):
@@ -54,6 +63,9 @@ class LCS():
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
                     print vel
+                    with open('record.csv', 'a') as r:
+                        writer = csv.writer(r)
+                        writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             else:
@@ -74,32 +86,48 @@ class LCS():
                             vel.linear.x  = 0.05
                             vel.angular.z = -1
                             print vel
+                            with open('record.csv', 'a') as r:
+                                writer = csv.writer(r)
+                                writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                             self.cmd_vel.publish(vel)
                             rate.sleep()
                         else: #direction of left is more safety
                             vel.linear.x  = 0.05
                             vel.angular.z = 1
                             print vel
+                            with open('record.csv', 'a') as r:
+                                writer = csv.writer(r)
+                                writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                             self.cmd_vel.publish(vel)
                             rate.sleep()
                     elif (ave_l > ave_c) and (ave_r < ave_l): #obstacle is in left
                         vel.linear.x  = 0.05
                         vel.angular.z = -0.5
                         print vel
+                        with open('record.csv', 'a') as r:
+                            writer = csv.writer(r)
+                            writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                         self.cmd_vel.publish(vel)
                         rate.sleep()
                     elif (ave_r > ave_c) and (ave_r > ave_l): #obstacle is in right
                         vel.linear.x  = 0.05
                         vel.angular.z = 0.5
                         print vel
+                        with open('record.csv', 'a') as r:
+                            writer = csv.writer(r)
+                            writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                         self.cmd_vel.publish(vel)
                         rate.sleep()
                 else:
                     vel.linear.x  = 0.1
                     vel.angular.z = 0
                     print vel
+                    with open('record.csv', 'a') as r:
+                        writer = csv.writer(r)
+                        writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                     self.cmd_vel.publish(vel)
                     rate.sleep()
+            
 
 if __name__ == '__main__':
     rospy.init_node("LCS")
