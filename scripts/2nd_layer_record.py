@@ -41,12 +41,15 @@ class LCS():
         ave_r = (light_r + light_fr)/2
         THRESHOLD = 10
         while not rospy.is_shutdown():
+#           with open('vel.csv', 'a') as v:
+#               v.writeline(vel)
+#           with open('bumper_left.csv', 'a') as bl:
+#               bl.writeline(self.bumper.is_left_pressed)
+#           with open('bumper.csv', 'a') as b:
+#               b.writeline(self.bumper.is_right_pressed, self.bumper.is_right_pressed)
             with open('vel.csv', 'a') as v:
-                v.writeline(vel)
-            with open('bumper_left.csv', 'a') as bl:
-                bl.writeline(self.bumper.is_left_pressed)
-            with open('bumper.csv', 'a') as b:
-                b.writeline(self.bumper.is_right_pressed, self.bumper.is_right_pressed)
+                writer = csv.writer(v)
+                writer.writeline(vel)
             #1st layer
             if (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
                 for i in range(16):
