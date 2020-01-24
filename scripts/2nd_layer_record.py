@@ -56,6 +56,9 @@ class LCS():
                     vel.linear.x  = 0
                     vel.angular.z = 0.5
                     print vel
+                    with open('record.csv', 'a') as r:
+                        writer = csv.writer(r)
+                        writer.writerow([vel.linear.x, vel.angular.z])
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == False):
