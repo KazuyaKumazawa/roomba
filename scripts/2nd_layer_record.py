@@ -14,6 +14,7 @@ change the direction to avoid obstacles
 '''
 
 import rospy
+import csv
 from geometry_msgs.msg import Twist
 from ca_msgs.msg import Bumper
 
