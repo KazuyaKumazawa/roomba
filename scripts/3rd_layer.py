@@ -125,6 +125,7 @@ class LCS():
                         rate.sleep()
                 elif (ave_l < 1) and (ave_c < 1) and (ave_r < 1):
                     self.dock.publish()
+                    break
                     print vel
                     with open('record.csv', 'a') as r:
                         writer = csv.writer(r)
