@@ -124,12 +124,12 @@ class LCS():
                         self.cmd_vel.publish(vel)
                         rate.sleep()
                 elif (ave_l < 1) and (ave_c < 1) and (ave_r < 1):
-                    break
-                #    self.dock.publish()
-                #    print vel
-                #    with open('record.csv', 'a') as r:
-                #        writer = csv.writer(r)
-                #        writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
+                    self.dock.publish()
+                    print vel
+                    with open('record.csv', 'a') as r:
+                        writer = csv.writer(r)
+                        writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
+                    rate.sleep(0.1)
                 else:
                     vel.linear.x  = 0.1
                     vel.angular.z = 0
@@ -139,7 +139,7 @@ class LCS():
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                     self.cmd_vel.publish(vel)
                     rate.sleep()
-            self.dock.publish()        
+                    
             
 
 if __name__ == '__main__':
