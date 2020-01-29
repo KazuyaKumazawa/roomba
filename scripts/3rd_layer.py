@@ -19,7 +19,7 @@ go to dock
 import rospy
 import csv
 from geometry_msgs.msg import Twist
-#from std_msgs.msg import Empty
+from std_msgs.msg import Empty
 from ca_msgs.msg import Bumper
 
 class LCS():
