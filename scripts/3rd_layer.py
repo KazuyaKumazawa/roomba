@@ -25,7 +25,7 @@ from ca_msgs.msg import Bumper
 class LCS():
     def __init__(self):
         self.cmd_vel = rospy.Publisher("cmd_vel", Twist, queue_size=10)
-        #self.dock = rospy.Publisher("dock", Empty, queue_size=10)
+        self.dock = rospy.Publisher("dock", Empty, queue_size=10)
         self.bumper = Bumper()
         rospy.Subscriber("bumper", Bumper, self.callback)
             
@@ -127,7 +127,7 @@ class LCS():
                     #vel.linear.x  = 0.1
                     #vel.angular.z = 0
                     #print vel
-                    rostopic pub /dock std_msgs/Empty
+                    self.dock.publish()
                     with open('record.csv', 'a') as r:
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
