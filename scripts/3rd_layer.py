@@ -19,11 +19,13 @@ go to dock
 import rospy
 import csv
 from geometry_msgs.msg import Twist
+#from std_msgs.msg import Empty
 from ca_msgs.msg import Bumper
 
 class LCS():
     def __init__(self):
         self.cmd_vel = rospy.Publisher("cmd_vel", Twist, queue_size=10)
+        #self.dock = rospy.Publisher("dock", Empty, queue_size=10)
         self.bumper = Bumper()
         rospy.Subscriber("bumper", Bumper, self.callback)
             
@@ -122,14 +124,16 @@ class LCS():
                         self.cmd_vel.publish(vel)
                         rate.sleep()
                 else:
-                    vel.linear.x  = 0.1
-                    vel.angular.z = 0
-                    print vel
+                    #vel.linear.x  = 0.1
+                    #vel.angular.z = 0
+                    #print vel
+                    rostopic pub /dock std_msgs/Empty
                     with open('record.csv', 'a') as r:
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
-                    self.cmd_vel.publish(vel)
-                    rate.sleep()
+                    #self.cmd_vel.publish(vel)
+                    #rate.sleep()
+                    
             
 
 if __name__ == '__main__':
