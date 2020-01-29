@@ -25,7 +25,7 @@ from ca_msgs.msg import Bumper
 class LCS():
     def __init__(self):
         self.cmd_vel = rospy.Publisher("cmd_vel", Twist, queue_size=10)
-        self.dock = rospy.Publisher("dock", Empty, queue_size=0.001)
+        self.dock = rospy.Publisher("dock", Empty)
         self.bumper = Bumper()
         rospy.Subscriber("bumper", Bumper, self.callback)
             
