@@ -129,6 +129,7 @@ class LCS():
                     with open('record.csv', 'a') as r:
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
+                    rate.sleep()
                 else:
                     vel.linear.x  = 0.1
                     vel.angular.z = 0
