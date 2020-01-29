@@ -25,7 +25,7 @@ from ca_msgs.msg import Bumper
 class LCS():
     def __init__(self):
         self.cmd_vel = rospy.Publisher("cmd_vel", Twist, queue_size=10)
-        self.dock = rospy.Publisher("dock", Empty)
+        self.dock = rospy.Publisher("dock", Empty, queue_size=10)
         self.bumper = Bumper()
         rospy.Subscriber("bumper", Bumper, self.callback)
             
@@ -124,7 +124,7 @@ class LCS():
                         self.cmd_vel.publish(vel)
                         rate.sleep()
                 elif (ave_l < 1) and (ave_c < 1) and (ave_r < 1):
-                    self.dock.publish()
+                    self.dock.publish
                     print vel
                     with open('record.csv', 'a') as r:
                         writer = csv.writer(r)
