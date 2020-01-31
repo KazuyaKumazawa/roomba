@@ -14,7 +14,7 @@ class LCS():
         self.bumper = Bumper()
         rospy.Subscriber("bumper", Bumper, self.callback)
         self.ir_omni = UInt16()
-        rospy.Subscriber("ir_omni", Ulnt16, self.callback)
+        rospy.Subscriber("ir_omni", UInt16, self.callback)
             
     def callback(self,messages):
         self.bumper = messages
