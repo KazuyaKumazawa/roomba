@@ -29,7 +29,6 @@ class LCS():
         light_cr = self.bumper.light_signal_center_right
         light_fr = self.bumper.light_signal_front_right
         light_r = self.bumper.light_signal_right
-        ir = self.ir_omni
         while not rospy.is_shutdown():
             #1st layer
             for i in range(128): #12.8sec*0.5rad/sec~2Pi
@@ -38,7 +37,7 @@ class LCS():
                 print ir
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
-                    writer.writerow([vel.linear.x, vel.angular.z, ir])
+                    writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni])
                 self.cmd_vel.publish(vel)
                 rate.sleep()
                     
