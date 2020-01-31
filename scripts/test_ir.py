@@ -34,7 +34,7 @@ class LCS():
             for i in range(128): #12.8sec*0.5rad/sec~2Pi
                 vel.linear.x  = 0
                 vel.angular.z = 0
-                print ir
+                print self.ir_omni
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni])
