@@ -5,7 +5,7 @@ import csv
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Empty
 from ca_msgs.msg import Bumper
-from std_msgs.msg import Ulnt16
+from std_msgs.msg import UInt16
 
 class LCS():
     def __init__(self):
@@ -13,7 +13,7 @@ class LCS():
         self.dock = rospy.Publisher("dock", Empty, queue_size=10)
         self.bumper = Bumper()
         rospy.Subscriber("bumper", Bumper, self.callback)
-        self.ir_omni = Ulnt16()
+        self.ir_omni = UInt16()
         rospy.Subscriber("ir_omni", Ulnt16, self.callback)
             
     def callback(self,messages):
