@@ -123,7 +123,7 @@ class LCS():
                             writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                         self.cmd_vel.publish(vel)
                         rate.sleep()
-                elif (ave_l < 10) and (ave_c < 10) and (ave_r < 10): #3rd layer
+                elif (ave_l < 5) and (ave_c < 5) and (ave_r < 5): #3rd layer
                     self.dock.publish()
                     print vel
                     with open('record.csv', 'a') as r:
