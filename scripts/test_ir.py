@@ -33,7 +33,7 @@ class LCS():
             #1st layer
             for i in range(128): #12.8sec*0.5rad/sec~2Pi
                 vel.linear.x  = 0
-                vel.angular.z = 0
+                vel.angular.z = 0.5
                 print self.ir_omni
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
