@@ -29,7 +29,7 @@ class LCS():
         light_cr = self.bumper.light_signal_center_right
         light_fr = self.bumper.light_signal_front_right
         light_r = self.bumper.light_signal_right
-        ir = self.ir_omni.data:
+        ir = self.ir_omni.x
         while not rospy.is_shutdown():
             for i in range(256):
                 vel.linear.x  = 0
