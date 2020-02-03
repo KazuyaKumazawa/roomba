@@ -40,7 +40,7 @@ class LCS():
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
                 self.cmd_vel.publish(vel)
                 rate.sleep()
-            elif:
+            else
                 for i in range(20):
                     vel.linear.x  = 0.1
                     vel.angular.z = 0
