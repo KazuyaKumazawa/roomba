@@ -41,12 +41,15 @@ class LCS():
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
                 self.cmd_vel.publish(vel)
                 if self.ir_omni > 100:
+                    for i in range(10):
+                        vel.linear.x  = 0
+                        vel.angular.z = 0
                     print self.ir_omni
                     print("3rd layer activated")
                     with open('ir.csv', 'a') as r:
                         writer = csv.writer(r)
-                        writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
-                    break
+                        writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir, "3rd layer activated"])
+                    self.cmd_vel.publish(vel)
                 rate.sleep()
                     
             
