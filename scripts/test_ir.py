@@ -31,7 +31,7 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
-            if self.ir_omni is 'data:0':
+            for i in range(256):
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 print self.ir_omni
@@ -39,18 +39,28 @@ class LCS():
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
                 self.cmd_vel.publish(vel)
-                rate.sleep()
-            else:
-                for i in range(20):
-                    vel.linear.x  = 0
-                    vel.angular.z = 0
-                    print self.ir_omni
-                    print ("3rd layer activated")
-                    with open('ir.csv', 'a') as r:
-                        writer = csv.writer(r)
-                        writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir, "3rd layer activated"])
-                    self.cmd_vel.publish(vel)
-                    rate.sleep()
+                rate.sleep()    
+            
+#            if self.ir_omni is 'data:0':
+#                vel.linear.x  = 0
+#                vel.angular.z = 0.5
+#                print self.ir_omni
+#                with open('ir.csv', 'a') as r:
+#                    writer = csv.writer(r)
+#                    writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
+#                self.cmd_vel.publish(vel)
+#                rate.sleep()
+#            else:
+#                for i in range(20):
+#                    vel.linear.x  = 0
+#                    vel.angular.z = 0
+#                    print self.ir_omni
+#                    print ("3rd layer activated")
+#                    with open('ir.csv', 'a') as r:
+#                        writer = csv.writer(r)
+#                        writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir, "3rd layer activated"])
+#                    self.cmd_vel.publish(vel)
+#                    rate.sleep()
                     
             
 
