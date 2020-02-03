@@ -31,7 +31,7 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
-            if self.ir_omni == 0:
+            if self.ir_omni is 'data:0':
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 print self.ir_omni
@@ -42,7 +42,7 @@ class LCS():
                 rate.sleep()
             else:
                 for i in range(20):
-                    vel.linear.x  = 0.1
+                    vel.linear.x  = 0
                     vel.angular.z = 0
                     print self.ir_omni
                     print ("3rd layer activated")
