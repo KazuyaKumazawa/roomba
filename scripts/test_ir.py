@@ -31,8 +31,7 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
-            #1st layer
-            for i in range(128): #12.8sec*0.5rad/sec~2Pi
+            if self.ir_omni < 100:
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 print self.ir_omni
@@ -41,16 +40,16 @@ class LCS():
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
                 self.cmd_vel.publish(vel)
                 rate.sleep()
-                if self.ir_omni > 100:
-                    for i in range(50):
-                        vel.linear.x  = 0
-                        vel.angular.z = 0
-                        print self.ir_omni
-                        print ("3rd layer activated")
-                        with open('ir.csv', 'a') as r:
-                            writer = csv.writer(r)
-                            writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir, "3rd layer activated"])
-                        self.cmd_vel.publish(vel)
+            elseif self.ir_omni > 100:
+                for i in range(20):
+                    vel.linear.x  = 0.1
+                    vel.angular.z = 0
+                    print self.ir_omni
+                    print ("3rd layer activated")
+                    with open('ir.csv', 'a') as r:
+                        writer = csv.writer(r)
+                        writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir, "3rd layer activated"])
+                    self.cmd_vel.publish(vel)
                     rate.sleep()
                     
             
