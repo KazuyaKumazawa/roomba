@@ -31,7 +31,7 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
-            if self.ir_omni < 100:
+            if self.ir_omni == 0:
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 print self.ir_omni
@@ -40,7 +40,7 @@ class LCS():
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
                 self.cmd_vel.publish(vel)
                 rate.sleep()
-            elif self.ir_omni > 100:
+            elif:
                 for i in range(20):
                     vel.linear.x  = 0.1
                     vel.angular.z = 0
