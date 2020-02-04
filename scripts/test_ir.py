@@ -2,7 +2,7 @@
 
 import rospy
 import csv
-import re  #seikihyougennsousa
+import re  #extract numbers
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Empty
 from ca_msgs.msg import Bumper
@@ -35,7 +35,7 @@ class LCS():
             for i in range(256): #~2Pi
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
-                num = re.sub(r'\D', '', "self.ir_omni") #tyuusyutu
+                num = re.sub(r'\D', '', "self.ir_omni") #extract numbers
                 print "num={0}".format(num)
                 print "ir={0}".format(ir)
                 print "self.ir_omni={0}".format(self.ir_omni)
