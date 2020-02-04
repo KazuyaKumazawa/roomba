@@ -40,8 +40,8 @@ class LCS():
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 ir = self.ir_omni
-                num = re.sub(r'\D', '', "self.ir_omni") #extract numbers
-                print "num={0}".format(num)
+#                num = re.sub(r'\D', '', "self.ir_omni") #extract numbers
+#                print "num={0}".format(num)
                 print "ir={0}".format(ir)
                 print "self.ir_omni={0}".format(self.ir_omni)
                 with open('ir.csv', 'a') as r:
