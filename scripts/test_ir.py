@@ -35,7 +35,7 @@ class LCS():
             for i in range(256):
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
-                num = re.sub("\\D", "", "self.ir_omni") #tyuusyutu
+                num = re.sub(r'\D', '', "self.ir_omni") #tyuusyutu
                 print num
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
