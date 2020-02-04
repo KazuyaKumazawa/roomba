@@ -2,6 +2,7 @@
 
 import rospy
 import csv
+import re  #seikihyougennsousa
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Empty
 from ca_msgs.msg import Bumper
@@ -29,12 +30,13 @@ class LCS():
         light_cr = self.bumper.light_signal_center_right
         light_fr = self.bumper.light_signal_front_right
         light_r = self.bumper.light_signal_right
-        ir = self.ir_omni.x
+        ir = self.ir_omni
         while not rospy.is_shutdown():
             for i in range(256):
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
-                print self.ir_omni
+                num = re.sub("\\D", "", "self.ir_omni") #tyuusyutu
+                print num
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
