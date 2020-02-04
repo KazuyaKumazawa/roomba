@@ -35,10 +35,16 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
+            light_l = self.bumper.light_signal_left
+            light_fl = self.bumper.light_signal_front_left
+            light_cl = self.bumper.light_signal_center_left
+            light_cr = self.bumper.light_signal_center_right
+            light_fr = self.bumper.light_signal_front_right
+            light_r = self.bumper.light_signal_right
+            ir = self.ir_omni
             if (ir == 160) or (ir == 161) or (ir == 164) or (ir == 165) or (ir == 168) or (ir == 169) or (ir == 172) or (ir == 173):
                 vel.linear.x  = 0
                 vel.angular.z = 0
-                ir = self.ir_omni
                 print ir
                 print '3rd layer is activated!!!!!!!!!!'
                 with open('ir.csv', 'a') as r:
@@ -49,7 +55,6 @@ class LCS():
             else:
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
-                ir = self.ir_omni
                 print ir
                 print '3rd layer is not activated'
                 with open('ir.csv', 'a') as r:
