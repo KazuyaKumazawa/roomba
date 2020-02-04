@@ -2,7 +2,6 @@
 
 import rospy
 import csv
-import re  #extract numbers
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Empty
 from ca_msgs.msg import Bumper
@@ -36,51 +35,30 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
-            if (self.ir_omni == 160) or (self.ir_omni == 161) or (self.ir_omni == 164) or (self.ir_omni == 165) or (self.ir_omni == 168) or (self.ir_omni == 169) or (self.ir_omni == 172) or (self.ir_omni == 173):
+            if (ir == 160) or (ir == 161) or (ir == 164) or (ir == 165) or (ir == 168) or (ir == 169) or (ir == 172) or (ir == 173):
                 vel.linear.x  = 0
                 vel.angular.z = 0
                 ir = self.ir_omni
+                print ir
                 print '3rd layer is activated!!!!!!!!!!'
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
-                    writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
+                    writer.writerow([vel.linear.x, vel.angular.z, ir])
                 self.cmd_vel.publish(vel)
                 rate.sleep()
             else:
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 ir = self.ir_omni
+                print ir
                 print '3rd layer is not activated'
-#                num = re.sub(r'\D', '', "self.ir_omni") #extract numbers
-#                print "num={0}".format(num)
-#                print "ir={0}".format(ir)
-#                print "self.ir_omni={0}".format(self.ir_omni)
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
-                    writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
+                    writer.writerow([vel.linear.x, vel.angular.z, ir])
                 self.cmd_vel.publish(vel)
                 rate.sleep()    
             
-#            if self.ir_omni is 'data:0':
-#                vel.linear.x  = 0
-#                vel.angular.z = 0.5
-#                print self.ir_omni
-#                with open('ir.csv', 'a') as r:
-#                    writer = csv.writer(r)
-#                    writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
-#                self.cmd_vel.publish(vel)
-#                rate.sleep()
-#            else:
-#                for i in range(20):
-#                    vel.linear.x  = 0
-#                    vel.angular.z = 0
-#                    print self.ir_omni
-#                    print ("3rd layer activated")
-#                    with open('ir.csv', 'a') as r:
-#                        writer = csv.writer(r)
-#                        writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir, "3rd layer activated"])
-#                    self.cmd_vel.publish(vel)
-#                    rate.sleep()
+
                     
             
 
