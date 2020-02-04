@@ -17,8 +17,12 @@ class LCS():
         self.ir_omni = UInt16()
         rospy.Subscriber("ir_omni", UInt16, self.callback)
             
-    def callback(self,messages):
+#    def callback(self,messages):
+#        self.bumper = messages
+#        self.ir_omni = messages
+    def callback_bumper(self,messages):
         self.bumper = messages
+    def callback_ir(self,messages):
         self.ir_omni = messages
         
     def run(self):
@@ -35,6 +39,7 @@ class LCS():
             for i in range(256): #~2Pi
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
+                ir = self.ir_omni
                 num = re.sub(r'\D', '', "self.ir_omni") #extract numbers
                 print "num={0}".format(num)
                 print "ir={0}".format(ir)
