@@ -37,6 +37,8 @@ class LCS():
                 vel.angular.z = 0.5
                 num = re.sub(r'\D', '', "self.ir_omni") #tyuusyutu
                 print num
+                print ir
+                print self.ir_omni
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
