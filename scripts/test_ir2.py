@@ -36,14 +36,23 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
-            for i in range(256): #~2Pi
+            if (self.ir_omni == data:160) or (self.ir_omni == data:161) or (self.ir_omni == data:164) or (self.ir_omni == data:165) or (self.ir_omni == data:168) or (self.ir_omni == data:169) or (self.ir_omni == data:172) or (self.ir_omni == data:173):
+                vel.linear.x  = 0
+                vel.angular.z = 0
+                ir = self.ir_omni
+                with open('ir.csv', 'a') as r:
+                    writer = csv.writer(r)
+                    writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
+                self.cmd_vel.publish(vel)
+                rate.sleep()
+            else:
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 ir = self.ir_omni
 #                num = re.sub(r'\D', '', "self.ir_omni") #extract numbers
 #                print "num={0}".format(num)
-                print "ir={0}".format(ir)
-                print "self.ir_omni={0}".format(self.ir_omni)
+#                print "ir={0}".format(ir)
+#                print "self.ir_omni={0}".format(self.ir_omni)
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
