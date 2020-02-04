@@ -32,7 +32,7 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
-            for i in range(256):
+            for i in range(256): #~2Pi
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 num = re.sub(r'\D', '', "self.ir_omni") #tyuusyutu
