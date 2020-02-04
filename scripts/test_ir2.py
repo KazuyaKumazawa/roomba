@@ -40,7 +40,7 @@ class LCS():
                 vel.linear.x  = 0
                 vel.angular.z = 0
                 ir = self.ir_omni
-                print '3rd layer activated'
+                print '3rd layer is activated!!!!!!!!!!'
                 with open('ir.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.ir_omni, ir])
@@ -50,6 +50,7 @@ class LCS():
                 vel.linear.x  = 0
                 vel.angular.z = 0.5
                 ir = self.ir_omni
+                print '3rd layer is not activated'
 #                num = re.sub(r'\D', '', "self.ir_omni") #extract numbers
 #                print "num={0}".format(num)
 #                print "ir={0}".format(ir)
