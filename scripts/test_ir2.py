@@ -36,7 +36,7 @@ class LCS():
         light_r = self.bumper.light_signal_right
         ir = self.ir_omni
         while not rospy.is_shutdown():
-            if (self.ir_omni == data:160) or (self.ir_omni == data:161) or (self.ir_omni == data:164) or (self.ir_omni == data:165) or (self.ir_omni == data:168) or (self.ir_omni == data:169) or (self.ir_omni == data:172) or (self.ir_omni == data:173):
+            if (self.ir_omni == 160) or (self.ir_omni == 161) or (self.ir_omni == 164) or (self.ir_omni == 165) or (self.ir_omni == 168) or (self.ir_omni == 169) or (self.ir_omni == 172) or (self.ir_omni == 173):
                 vel.linear.x  = 0
                 vel.angular.z = 0
                 ir = self.ir_omni
