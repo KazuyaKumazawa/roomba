@@ -13,9 +13,9 @@ class LCS():
         self.cmd_vel = rospy.Publisher("cmd_vel", Twist, queue_size=10)
         self.dock = rospy.Publisher("dock", Empty, queue_size=10)
         self.bumper = Bumper()
-        rospy.Subscriber("bumper", Bumper, self.callback)
+        rospy.Subscriber("bumper", Bumper, self.callback_bumper)
         self.ir_omni = UInt16()
-        rospy.Subscriber("ir_omni", UInt16, self.callback)
+        rospy.Subscriber("ir_omni", UInt16, self.callback_ir)
             
 #    def callback(self,messages):
 #        self.bumper = messages
