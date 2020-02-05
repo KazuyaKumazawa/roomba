@@ -119,7 +119,7 @@ class LCS():
                     self.cmd_vel.publish(vel)
                     rate.sleep()
             #2nd layer
-            elif (ave_c>THRESHOLD) or (ave_r>THRESHOLD) or (ave_l>THRESHOLD): #detect obstacle
+            elif (ave_c>THRESHOLD_2) or (ave_r>THRESHOLD_2) or (ave_l>THRESHOLD_2): #detect obstacle
                 if (ave_l < ave_c) and (ave_r < ave_c): #obstacle is in front
                     if ave_l > ave_r: #direction of right is more safety
                         vel.linear.x  = 0.05
