@@ -13,7 +13,7 @@ and light_signal_front_right and light_signal_right,
 change the direction to avoid obstacles
 3rd layer
 Based on IR sensor,
-go to dock
+go to dock (using iRobot algorithm)
 '''
 
 import rospy
