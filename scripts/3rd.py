@@ -69,6 +69,7 @@ class LCS():
                 vel.linear.x  = 0.15
                 vel.angular.z = 0
                 self.cmd_vel.publish(vel)
+                print '3rd layer'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
@@ -77,7 +78,8 @@ class LCS():
                 vel.linear.x  = 0
                 vel.angular.z = 0
                 self.cmd_vel.publish(vel)
-                print 'goal!!!'
+                print '3rd layer'
+                print 'gooooooooal!'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
@@ -91,6 +93,7 @@ class LCS():
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                     self.cmd_vel.publish(vel)
+                    print '1st layer'
                     rate.sleep()
             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == False):
                 for i in range(16):
@@ -100,6 +103,7 @@ class LCS():
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                     self.cmd_vel.publish(vel)
+                    print '1st layer'
                     rate.sleep()
             elif (self.bumper.is_left_pressed == True) and (self.bumper.is_right_pressed == True):
                 for i in range(62): #6.2sec*0.5rad/sec~Pi
@@ -109,6 +113,7 @@ class LCS():
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                     self.cmd_vel.publish(vel)
+                    print '1st layer'
                     rate.sleep()
             #2nd layer
             elif (ave_c>THRESHOLD_2) or (ave_r>THRESHOLD_2) or (ave_l>THRESHOLD_2): #detect obstacle
@@ -120,6 +125,7 @@ class LCS():
                             writer = csv.writer(r)
                             writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                         self.cmd_vel.publish(vel)
+                        print '2nd layer'
                         rate.sleep()
                     else: #direction of left is more safety
                         vel.linear.x  = 0.05
@@ -128,6 +134,7 @@ class LCS():
                             writer = csv.writer(r)
                             writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                         self.cmd_vel.publish(vel)
+                        print '2nd layer'
                         rate.sleep()
                 elif (ave_l > ave_c) and (ave_r < ave_l): #obstacle is in left
                     vel.linear.x  = 0.05
@@ -136,6 +143,7 @@ class LCS():
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                     self.cmd_vel.publish(vel)
+                    print '2nd layer'
                     rate.sleep()
                 elif (ave_r > ave_c) and (ave_r > ave_l): #obstacle is in right
                     vel.linear.x  = 0.05
@@ -144,10 +152,11 @@ class LCS():
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                     self.cmd_vel.publish(vel)
+                    print '2nd layer'
                     rate.sleep()
             else:
                 vel.linear.x  = 0.1
-                vel.angular.z = 0
+                vel.angular.z = -0.5
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
