@@ -65,7 +65,7 @@ class LCS():
             ir = self.ir_omni.data
             #3rd layer (ir_omni is derived from dock, so 3ed layer has priority)
             if (ir == 172): #go for dock
-                vel.linear.x  = 0.05
+                vel.linear.x  = 0.04
                 vel.angular.z = 0
                 self.cmd_vel.publish(vel)
                 print '3rd layer in GR'
@@ -74,7 +74,7 @@ class LCS():
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                 rate.sleep()
             elif (ir == 164): #Green Buoy
-                vel.linear.x  = 0.05
+                vel.linear.x  = 0.04
                 vel.angular.z = 0.5
                 self.cmd_vel.publish(vel)
                 print '3rd layer in G'
@@ -83,7 +83,7 @@ class LCS():
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                 rate.sleep()
             elif (ir == 168): #Red Buoy
-                vel.linear.x  = 0.05
+                vel.linear.x  = 0.04
                 vel.angular.z = -0.5
                 self.cmd_vel.publish(vel)
                 print '3rd layer in R'
@@ -116,6 +116,7 @@ class LCS():
                 vel.angular.z = 0
                 self.cmd_vel.publish(vel)
                 print '3rd layer in GRF or F'
+                print ir
                 print 'gooooooooal!'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
