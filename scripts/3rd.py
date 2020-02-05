@@ -84,36 +84,6 @@ class LCS():
                         writer = csv.writer(r)
                         writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                     rate.sleep()
-            '''
-            if (ave_l < THRESHOLD_3) and (ave_c < THRESHOLD_3) and (ave_r < THRESHOLD_3):
-                for i in range(200):
-                    ir = self.ir_omni.data
-                    if (ir == 172): #go for dock
-                        vel.linear.x  = 0.2
-                        vel.angular.z = 0
-                        self.cmd_vel.publish(vel)
-                        with open('record.csv', 'a') as r:
-                            writer = csv.writer(r)
-                            writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
-                        rate.sleep()
-                    elif (ir == 161) or (ir == 173) or (ir == 165) or (ir == 169): #near dock
-                        vel.linear.x  = 0
-                        vel.angular.z = 0
-                        self.cmd_vel.publish(vel)
-                        print 'goal!!!'
-                        with open('record.csv', 'a') as r:
-                            writer = csv.writer(r)
-                            writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
-                        rate.sleep()
-                    else: #searching dock
-                        vel.linear.x  = 0
-                        vel.angular.z = -0.5
-                        self.cmd_vel.publish(vel)
-                        with open('record.csv', 'a') as r:
-                            writer = csv.writer(r)
-                            writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
-                        rate.sleep()
-            '''
             #1st layer
             elif (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
                 for i in range(16):
