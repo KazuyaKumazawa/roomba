@@ -68,7 +68,7 @@ class LCS():
                 vel.linear.x  = 0.11
                 vel.angular.z = 0
                 self.cmd_vel.publish(vel)
-                print '3rd layer'
+                print '3rd layer in GR'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
@@ -77,7 +77,7 @@ class LCS():
                 vel.linear.x  = 0.11
                 vel.angular.z = 0.3
                 self.cmd_vel.publish(vel)
-                print '3rd layer'
+                print '3rd layer in G'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
@@ -86,7 +86,7 @@ class LCS():
                 vel.linear.x  = 0.11
                 vel.angular.z = -0.3
                 self.cmd_vel.publish(vel)
-                print '3rd layer'
+                print '3rd layer in R'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
@@ -95,25 +95,25 @@ class LCS():
                 vel.linear.x  = 0.01
                 vel.angular.z = -1
                 self.cmd_vel.publish(vel)
-                print '3rd layer'
+                print '3rd layer in GF'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                 rate.sleep()
-            elif (ir == 165): #Red Buoy and Force Field
+            elif (ir == 169): #Red Buoy and Force Field
                 vel.linear.x  = 0.01
                 vel.angular.z = 1
                 self.cmd_vel.publish(vel)
-                print '3rd layer'
+                print '3rd layer in RF'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                 rate.sleep()
-            elif (ir == 161): #or (ir == 173): #near dock
+            elif (ir == 173): #or (ir == 160): #near dock
                 vel.linear.x  = 0
                 vel.angular.z = 0
                 self.cmd_vel.publish(vel)
-                print '3rd layer'
+                print '3rd layer in GRF'
                 print 'gooooooooal!'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
