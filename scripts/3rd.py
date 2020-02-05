@@ -101,6 +101,7 @@ class LCS():
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                 rate.sleep()
+                break
             #1st layer
             elif (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
                 for i in range(16):
