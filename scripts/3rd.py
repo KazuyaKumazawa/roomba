@@ -47,7 +47,8 @@ class LCS():
         light_cr = self.bumper.light_signal_center_right
         light_fr = self.bumper.light_signal_front_right
         light_r = self.bumper.light_signal_right
-        THRESHOLD = 10
+        THRESHOLD_2 = 10
+        THRESHOLD_3 = 10
         ir = self.ir_omni.data
         while not rospy.is_shutdown():
             rate = rospy.Rate(10)
@@ -63,7 +64,7 @@ class LCS():
             ave_r = (light_r + light_fr)/2
             ir = self.ir_omni.data
             #3rd layer (ir_omni is derived from dock, so 3ed layer has priority)
-            if (ave_l < 5) and (ave_c < 5) and (ave_r < 5):
+            if (ave_l < THRESHOLD_3) and (ave_c < THRESHOLD_3) and (ave_r < THRESHOLD_3):
                 if (ir == 172): #go for dock
                     vel.linear.x  = 0.2
                     vel.angular.z = 0
@@ -83,7 +84,7 @@ class LCS():
                     rate.sleep()
                 else: #searching dock
                     vel.linear.x  = 0
-                    vel.angular.z = 0.5
+                    vel.angular.z = -0.5
                     self.cmd_vel.publish(vel)
                     with open('record.csv', 'a') as r:
                         writer = csv.writer(r)
