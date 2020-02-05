@@ -41,7 +41,7 @@ class LCS():
             light_cr = self.bumper.light_signal_center_right
             light_fr = self.bumper.light_signal_front_right
             light_r = self.bumper.light_signal_right
-            ir = self.ir_omni
+            ir = self.ir_omni.data
             if (ir > 0):
             # or (ir == 165) or (ir == 168) or (ir == 169) or (ir == 172) or (ir == 173):
                 vel.linear.x  = 0
