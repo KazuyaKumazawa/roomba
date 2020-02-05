@@ -109,11 +109,11 @@ class LCS():
                     writer = csv.writer(r)
                     writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r, ir])
                 rate.sleep()
-            elif (ir == 173): #or (ir == 160): #near dock
+            elif (ir == 173) or (ir == 160): #near dock
                 vel.linear.x  = 0
                 vel.angular.z = 0
                 self.cmd_vel.publish(vel)
-                print '3rd layer in GRF'
+                print '3rd layer in GRF or F'
                 print 'gooooooooal!'
                 with open('record.csv', 'a') as r:
                     writer = csv.writer(r)
