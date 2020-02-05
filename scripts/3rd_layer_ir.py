@@ -13,7 +13,7 @@ and light_signal_front_right and light_signal_right,
 change the direction to avoid obstacles
 3rd layer
 Based on IR sensor,
-go to dock
+go to dock (original algorithm)
 '''
 
 import rospy
@@ -46,6 +46,7 @@ class LCS():
         light_cr = self.bumper.light_signal_center_right
         light_fr = self.bumper.light_signal_front_right
         light_r = self.bumper.light_signal_right
+        ir = self.ir_omni.data
         while not rospy.is_shutdown():
             #1st layer
             if (self.bumper.is_right_pressed == True) and (self.bumper.is_left_pressed == False):
@@ -90,6 +91,7 @@ class LCS():
                 ave_l = (light_l + light_fl)/2
                 ave_r = (light_r + light_fr)/2
                 THRESHOLD = 10
+                ir = self.ir_omni.data
                 if ave_c>THRESHOLD or ave_r>THRESHOLD or ave_l>THRESHOLD: #detect obstacle
                     if (ave_l < ave_c) and (ave_r < ave_c): #obstacle is in front
                         if ave_l > ave_r: #direction of right is more safety
@@ -129,12 +131,21 @@ class LCS():
                         self.cmd_vel.publish(vel)
                         rate.sleep()
                 elif (ave_l < 5) and (ave_c < 5) and (ave_r < 5): #3rd layer
-                    self.dock.publish()
-                    print vel
-                    with open('record.csv', 'a') as r:
-                        writer = csv.writer(r)
-                        writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
-                    for i in range(100):
+                    if (ir == 172):
+                        vel.linear.x  = 0.1
+                        vel.angular.z = 0
+                        self.cmd_vel.publish(vel)
+                        with open('record.csv', 'a') as r:
+                            writer = csv.writer(r)
+                            writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
+                        rate.sleep()
+                    elif  (ir == 161) or (ir == 173) or (ir == 165) or (ir == 169) 
+                        vel.linear.x  = 0
+                        vel.angular.z = 0
+                        self.cmd_vel.publish(vel)
+                        with open('record.csv', 'a') as r:
+                            writer = csv.writer(r)
+                            writer.writerow([vel.linear.x, vel.angular.z, self.bumper.is_left_pressed, self.bumper.is_right_pressed, light_l, light_fl, light_cl, light_cr, light_fr, light_r])
                         rate.sleep()
                 else:
                     vel.linear.x  = 0.1
