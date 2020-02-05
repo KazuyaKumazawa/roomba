@@ -48,7 +48,7 @@ class LCS():
         light_fr = self.bumper.light_signal_front_right
         light_r = self.bumper.light_signal_right
         THRESHOLD_2 = 10
-        THRESHOLD_3 = 10
+        THRESHOLD_3 = 5
         ir = self.ir_omni.data
         while not rospy.is_shutdown():
             rate = rospy.Rate(10)
