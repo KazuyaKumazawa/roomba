@@ -75,7 +75,7 @@ class LCS():
                 rate.sleep()
             elif (ir == 164): #Green Buoy
                 vel.linear.x  = 0.05
-                vel.angular.z = -0.5
+                vel.angular.z = 0.5
                 self.cmd_vel.publish(vel)
                 print '3rd layer in G'
                 with open('record.csv', 'a') as r:
@@ -84,7 +84,7 @@ class LCS():
                 rate.sleep()
             elif (ir == 168): #Red Buoy
                 vel.linear.x  = 0.05
-                vel.angular.z = 0.5
+                vel.angular.z = -0.5
                 self.cmd_vel.publish(vel)
                 print '3rd layer in R'
                 with open('record.csv', 'a') as r:
